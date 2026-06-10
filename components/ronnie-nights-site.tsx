@@ -262,9 +262,25 @@ export function RonnieNightsSite() {
             <SectionLabel>Fremantle • Western Australia</SectionLabel>
             <motion.h1
               variants={fadeUp}
-              className="font-display max-w-4xl text-5xl font-black leading-[0.95] tracking-[-0.05em] text-white sm:text-6xl md:text-7xl xl:text-[7.2rem]"
+              className="font-display max-w-4xl text-5xl font-black leading-[0.95] tracking-[0.015em] text-white sm:text-6xl md:text-7xl xl:text-[7.2rem]"
             >
-              For the <span className="gold-text">LOVE</span> ❤️ of It!
+              For the <span className="gold-text">LOVE</span> of{" "}
+              <span className="inline-flex items-baseline">
+                <span className="relative inline-block">
+                  <span className="opacity-0">i</span>
+                  <span aria-hidden="true" className="absolute bottom-0 left-0">
+                    ı
+                  </span>
+                  <Image
+                    src="/images/heart-dot.png"
+                    alt=""
+                    width={26}
+                    height={26}
+                    className="absolute -top-[0.04em] left-1/2 h-[0.24em] w-[0.24em] -translate-x-1/2 object-contain"
+                  />
+                </span>
+                t!
+              </span>
             </motion.h1>
             <motion.p variants={fadeUp} className="mt-8 max-w-2xl text-lg leading-8 text-white/74 md:text-xl">
               Experience an exciting atmosphere while indulging in handcrafted cocktails, delicious food, and
