@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Next.js build output
+.next/
+out/
+
+# Vercel
+.vercel/
+
+# macOS
+.DS_Store
+
+# Environment files
+.env
+.env.local
+
+# Editor files
+.cursor/
+.vscode/
+
+# TypeScript
+*.tsbuildinfo

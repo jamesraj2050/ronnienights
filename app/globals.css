@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800;900&display=swap");
+@import "tailwindcss";
+
+:root {
+  --background: #080808;
+  --foreground: #ffffff;
+  --gold: #d4af37;
+  --amber: #d89b2b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(212, 175, 55, 0.35);
+  color: #ffffff;
+}
+
+.font-display {
+  font-family: "Playfair Display", serif;
+}
+
+.noise {
+  position: relative;
+}
+
+.noise::after {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  content: "";
+  opacity: 0.08;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.7) 0.8px, transparent 0.8px);
+  background-size: 6px 6px;
+  mix-blend-mode: overlay;
+}
+
+.glass {
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025));
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+}
+
+.gold-text {
+  background: linear-gradient(135deg, #fff5c7 0%, var(--gold) 45%, var(--amber) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.section-shell {
+  width: min(1180px, calc(100% - 32px));
+  margin-inline: auto;
+}
+
+.map-frame iframe {
+  filter: grayscale(100%) invert(92%) contrast(94%);
+}
