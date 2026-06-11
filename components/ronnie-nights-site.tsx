@@ -302,7 +302,7 @@ export function RonnieNightsSite() {
               <span className="block">
                 For the <span className="gold-text">LOVE</span>
               </span>
-              <span className="block whitespace-nowrap">
+              <span className="block whitespace-nowrap pl-[4.3em] sm:pl-[4.55em]">
                 of{" "}
                 <span className="inline-flex items-baseline">
                   <span className="relative inline-block">
@@ -310,15 +310,14 @@ export function RonnieNightsSite() {
                     <span aria-hidden="true" className="absolute bottom-0 left-0">
                       ı
                     </span>
-                    <Image
-                      src="/images/heart-dot.png"
-                      alt=""
-                      width={26}
-                      height={26}
-                      className="absolute top-[0.02em] left-1/2 h-[0.24em] w-[0.24em] -translate-x-1/2 object-contain"
-                    />
+                    <span
+                      aria-hidden="true"
+                      className="absolute top-[0.02em] left-1/2 -translate-x-1/2 text-[0.24em] leading-none text-red-500 drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)]"
+                    >
+                      ♥
+                    </span>
                   </span>
-                  t!
+                  t<span className="pl-[0.08em]">!</span>
                 </span>
               </span>
             </motion.h1>
