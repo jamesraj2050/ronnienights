@@ -12,6 +12,7 @@ import {
   GlassWater,
   Mail,
   MapPin,
+  Menu,
   Mic2,
   Music2,
   Phone,
@@ -179,6 +180,7 @@ export function RonnieNightsSite() {
   const [activeHeroImage, setActiveHeroImage] = useState(0);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [activeImage, setActiveImage] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 900], [0, 160]);
   const quoteY = useTransform(scrollY, [1800, 3600], [-80, 80]);
@@ -207,7 +209,7 @@ export function RonnieNightsSite() {
     <main className="min-h-screen bg-[#080808] text-white">
       <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-black/20 backdrop-blur-xl">
         <div className="section-shell flex h-20 items-center justify-between">
-          <a href="#home" className="font-display text-2xl font-bold tracking-wide">
+          <a href="#home" className="font-display text-2xl font-bold tracking-wide" onClick={() => setMobileMenuOpen(false)}>
             RONNIE <span className="gold-text">NIGHTS</span>
           </a>
           <nav className="hidden items-center gap-8 lg:flex">
@@ -224,7 +226,40 @@ export function RonnieNightsSite() {
           <a href="#contact" className={cn(buttonVariants({ variant: "outline", size: "default" }), "hidden sm:inline-flex")}>
             Book a Night
           </a>
+          <button
+            type="button"
+            className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-white transition hover:border-[#D4AF37]/70 hover:bg-[#D4AF37]/10 lg:hidden"
+            onClick={() => setMobileMenuOpen((open) => !open)}
+            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.nav
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.22, ease: "easeOut" }}
+              className="section-shell mb-4 rounded-[1.6rem] border border-white/10 bg-[#080808]/95 p-4 shadow-2xl lg:hidden"
+            >
+              <div className="grid gap-2">
+                {navItems.map((item) => (
+                  <a
+                    key={item}
+                    href={`#${item.toLowerCase()}`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="rounded-2xl px-4 py-3 text-sm font-semibold uppercase tracking-[0.22em] text-white/75 transition hover:bg-white/[0.06] hover:text-[#D4AF37]"
+                  >
+                    {item}
+                  </a>
+                ))}
+              </div>
+            </motion.nav>
+          )}
+        </AnimatePresence>
       </header>
 
       <section id="home" className="noise relative flex min-h-screen items-center overflow-hidden pt-20">
@@ -264,22 +299,27 @@ export function RonnieNightsSite() {
               variants={fadeUp}
               className="font-display max-w-4xl text-5xl font-black leading-[0.95] tracking-[0.015em] text-white sm:text-6xl md:text-7xl xl:text-[7.2rem]"
             >
-              For the <span className="gold-text">LOVE</span> of{" "}
-              <span className="inline-flex items-baseline">
-                <span className="relative inline-block">
-                  <span className="opacity-0">i</span>
-                  <span aria-hidden="true" className="absolute bottom-0 left-0">
-                    ı
+              <span className="block">
+                For the <span className="gold-text">LOVE</span>
+              </span>
+              <span className="block whitespace-nowrap">
+                of{" "}
+                <span className="inline-flex items-baseline">
+                  <span className="relative inline-block">
+                    <span className="opacity-0">i</span>
+                    <span aria-hidden="true" className="absolute bottom-0 left-0">
+                      ı
+                    </span>
+                    <Image
+                      src="/images/heart-dot.png"
+                      alt=""
+                      width={26}
+                      height={26}
+                      className="absolute top-[0.02em] left-1/2 h-[0.24em] w-[0.24em] -translate-x-1/2 object-contain"
+                    />
                   </span>
-                  <Image
-                    src="/images/heart-dot.png"
-                    alt=""
-                    width={26}
-                    height={26}
-                    className="absolute -top-[0.04em] left-1/2 h-[0.24em] w-[0.24em] -translate-x-1/2 object-contain"
-                  />
+                  t!
                 </span>
-                t!
               </span>
             </motion.h1>
             <motion.p variants={fadeUp} className="mt-8 max-w-2xl text-lg leading-8 text-white/74 md:text-xl">
@@ -312,7 +352,7 @@ export function RonnieNightsSite() {
         </motion.a>
       </section>
 
-      <section id="about" className="relative overflow-hidden bg-[#080808] py-28">
+      <section id="about" className="relative overflow-hidden bg-[#080808] pb-28 pt-20 lg:py-28">
         <div className="absolute left-[-10%] top-24 h-72 w-72 rounded-full bg-[#D4AF37]/10 blur-3xl" />
         <motion.div
           variants={stagger}
@@ -321,7 +361,7 @@ export function RonnieNightsSite() {
           viewport={{ once: true, margin: "-100px" }}
           className="section-shell grid items-center gap-14 lg:grid-cols-[1.02fr_0.98fr]"
         >
-          <motion.div variants={fadeUp} className="relative min-h-[540px] overflow-hidden rounded-[2.5rem]">
+          <motion.div variants={fadeUp} className="relative order-2 min-h-[540px] overflow-hidden rounded-[2.5rem] lg:order-1">
             <Image src="/images/Ronnie2.jpeg" alt="Ronnie Nights intimate cocktail bar" fill className="object-cover" sizes="(min-width: 1024px) 50vw, 100vw" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
             <div className="glass absolute bottom-6 left-6 right-6 rounded-[1.6rem] p-6">
@@ -330,13 +370,13 @@ export function RonnieNightsSite() {
             </div>
           </motion.div>
 
-          <motion.div variants={stagger}>
+          <motion.div variants={stagger} className="order-1 lg:order-2">
             <SectionLabel>About Ronnie Nights</SectionLabel>
             <motion.h2 variants={fadeUp} className="font-display text-5xl font-bold leading-tight tracking-[-0.04em] md:text-7xl">
               A Hidden Gem in Fremantle
             </motion.h2>
             <motion.p variants={fadeUp} className="mt-7 text-lg leading-8 text-white/68">
-              Ronnie Nights is a unique and intimate small bar where guests come together to enjoy exceptional
+              Ronnie Nights is a unique and intimate bar where guests come together to enjoy exceptional
               cocktails, delicious food, and unforgettable entertainment.
             </motion.p>
             <motion.p variants={fadeUp} className="mt-5 text-lg leading-8 text-white/68">
@@ -356,7 +396,7 @@ export function RonnieNightsSite() {
           className="section-shell"
         >
           <SectionLabel>The Experience</SectionLabel>
-          <motion.h2 variants={fadeUp} className="font-display max-w-3xl text-5xl font-bold tracking-[-0.04em] md:text-7xl">
+          <motion.h2 variants={fadeUp} className="font-display max-w-3xl text-4xl font-bold tracking-[-0.035em] md:text-6xl">
             Crafted for cocktail lovers, music seekers, and midnight stories.
           </motion.h2>
           <div className="mt-14 grid gap-6 md:grid-cols-3">
